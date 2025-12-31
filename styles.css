@@ -559,7 +559,313 @@ body{
     url("images/mostrador.jpg") center/cover no-repeat;
 }
 
+/* =========================
+   BOTÓN FLOTANTE WHATSAPP
+   ========================= */
+
+.floating-btn{
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.floating-whatsapp{
+  background: #25d366;
+  box-shadow: 0 10px 25px rgba(0,0,0,.28);
+}
+
+.floating-btn:hover{
+  transform: scale(1.08);
+}
+
+.floating-icon-svg{
+  width: 26px;
+  height: 26px;
+}
+
+/* =========================
+   ANIMACIÓN DE ATENCIÓN
+   ========================= */
+.floating-btn.is-attention{
+  animation: attention-pulse .9s ease;
+}
+
+@keyframes attention-pulse{
+  0%{
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37,211,102,.55);
+  }
+  40%{
+    transform: scale(1.12);
+    box-shadow: 0 0 0 14px rgba(37,211,102,.25);
+  }
+  70%{
+    transform: scale(1.05);
+    box-shadow: 0 0 0 22px rgba(37,211,102,0);
+  }
+  100%{
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(37,211,102,0);
+  }
+}
+
 @media (max-width: 980px){
   .local-teaser__box{ grid-template-columns: 1fr; }
   .local-teaser__image{ height: 240px; }
+}
+/* ======================================
+   HERO CARD DERECHO — MODELO C (COMPACTO)
+   ====================================== */
+
+.hero-promo{
+  height: 420px; /* mismo alto que el izquierdo */
+  border-radius: 30px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 22px 50px rgba(0,0,0,.12);
+  overflow: hidden;
+
+  background:
+    radial-gradient(110% 110% at 0% 0%, rgba(228,107,83,.14) 0%, transparent 58%),
+    radial-gradient(110% 110% at 100% 0%, rgba(47,95,91,.10) 0%, transparent 60%),
+    rgba(255,247,239,.92);
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* header */
+.hero-promo__header{
+  padding: 1.1rem 1.15rem .6rem;
+}
+
+.hero-promo__tag{
+  display:inline-flex;
+  padding: .42rem .75rem;
+  border-radius: 999px;
+  background: rgba(47,95,91,.10);
+  border: 1px solid rgba(47,95,91,.16);
+  color: rgba(47,95,91,.92);
+  font-weight: 900;
+  font-size: .74rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.hero-promo__title{
+  margin-top: .7rem;
+  font-family: "Baloo 2", cursive;
+  font-weight: 800;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  line-height: 1.06;
+  color: #2f5f5b;
+}
+.hero-promo__title span{ color:#e46b53; }
+
+/* main */
+.hero-promo__main{
+  padding: .6rem 1.15rem 1.15rem;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: .95rem;
+  align-items: center;
+}
+
+.hero-promo__text p{
+  color: rgba(22,48,46,.72);
+  font-size: .95rem;
+  max-width: 44ch;
+}
+
+.hero-promo__actions{
+  display:flex;
+  gap:.65rem;
+  flex-wrap: wrap;
+  margin-top: .95rem;
+}
+
+.hero-promo__line{
+  margin-top: .95rem;
+  font-weight: 800;
+  color: rgba(22,48,46,.66);
+  font-size: .9rem;
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  flex-wrap: wrap;
+}
+.hero-promo__line .sep{ opacity:.6; }
+.hero-promo__line .dot{
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: rgba(228,107,83,.85);
+  box-shadow: 0 0 0 8px rgba(228,107,83,.14);
+}
+
+/* photo */
+.hero-promo__photo{
+  margin: 0;
+  height: 230px;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 14px 30px rgba(0,0,0,.12);
+  background: #fff;
+}
+.hero-promo__photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display:block;
+  transform: rotate(-3deg) scale(1.05);
+}
+
+/* responsive */
+@media (max-width: 980px){
+  .hero-promo{
+    height: auto;
+  }
+  .hero-promo__main{
+    grid-template-columns: 1fr;
+  }
+  .hero-promo__photo{
+    height: 240px;
+  }
+  .hero-promo__text p{
+    max-width: 100%;
+  }
+}
+/* Asegura que ambos lados del hero estiren parejo */
+.hero__grid{
+  align-items: stretch;
+}
+
+/* el bloque izquierdo y el derecho ocupan el mismo alto disponible */
+.hero__left .mock,
+.hero__right .hero-bakery-card{
+  height: 420px;            /* ajustá 380–460 según te guste */
+}
+
+/* Si el mock izquierdo tiene otra altura, igualamos */
+.hero__left .mock{
+  height: 420px;
+}
+
+/* Hacemos que el card derecho distribuya contenido sin crecer */
+.hero-bakery-card{
+  display: grid;
+  grid-template-rows: auto 1fr; /* top + body */
+}
+
+/* El body se acomoda dentro del alto sin empujar */
+.hero-bakery-card__body{
+  display: grid;
+  grid-template-rows: auto auto auto 1fr; /* title, text, actions, minis */
+  align-content: start;
+}
+
+/* Bajamos un poco la foto para que no “infle” el card */
+.hero-bakery-card__photo img{
+  height: 170px;            /* antes 200 */
+}
+/* =========================
+   HAMBURGUESA + MENÚ MOBILE
+   ========================= */
+
+.header__actions{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+
+/* Botón hamburguesa */
+.hamburger{
+  display: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(22,48,46,.14);
+  background: rgba(255,255,255,.85);
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span{
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin: 4px auto;
+  background: rgba(22,48,46,.80);
+  border-radius: 99px;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+/* Menú mobile */
+.mobile-menu{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: .9rem 1rem 1rem;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  z-index: 60;
+}
+
+.mobile-menu__nav{
+  display: grid;
+  gap: .55rem;
+}
+
+.mobile-menu__nav a{
+  text-decoration: none;
+  font-weight: 800;
+  color: rgba(22,48,46,.82);
+  padding: .72rem .85rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.06);
+  background: rgba(255,247,239,.65);
+}
+
+.mobile-menu__nav a:hover{
+  background: rgba(255,247,239,.85);
+}
+
+.mobile-menu__cta{
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 14px 26px rgba(228,107,83,.22);
+}
+
+/* Overlay */
+.menu-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 55;
+  border: 0;
+  padding: 0;
+}
+
+/* Bloquea scroll cuando el menú está abierto */
+body.menu-open{
+  overflow: hidden;
+}
+
+/* Responsive: oculto nav desktop, muestro hamburguesa */
+@media (max-width: 980px){
+  .nav--desktop{ display: none; }
+  .hamburger{ display: inline-flex; align-items: center; justify-content: center; }
+  .header__cta{ display: none; } /* opcional: podés dejarlo visible */
 }
