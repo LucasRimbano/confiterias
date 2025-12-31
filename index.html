@@ -50,6 +50,11 @@
 
   <!-- OVERLAY -->
   <button class="menu-overlay" type="button" aria-label="Cerrar menú" hidden></button>
+  <div class="store-status" id="storeStatus" aria-live="polite">
+  <span class="dot"></span>
+  <strong>Estado:</strong> <span class="label">Consultando...</span>
+</div>
+
 </header>
 
 <main>
@@ -167,7 +172,7 @@
       <p>Lo más pedido por nuestros clientes</p>
     </div>
 
-    <div class="product-grid">
+    <div class="product-grid data-stagger">
 
       <article class="product-card">
         <div class="product-card__img">
@@ -289,9 +294,15 @@
     ></path>
   </svg>
 </a>
+<div class="toast" id="toastPromo" role="status" aria-live="polite">
+  <strong>¿Pedido para hoy?</strong>
+  <span>Te respondemos por WhatsApp.</span>
+  <a href="#contacto" class="toast__btn">Pedir</a>
+</div>
+
 <script>
   // =============================
-  // ANIMACIÓN CTA CADA 5 SEGUNDOS
+  // ANIMACIÓN CTA CADA 5 SEGUNDOS (WhatsApp)
   // =============================
   (function () {
     const target = document.querySelector(".floating-btn.floating-whatsapp");
@@ -303,51 +314,86 @@
       target.classList.add("is-attention");
     }
 
-    // Primera animación
     setTimeout(triggerAnimation, 1200);
-
-    // Repetir cada 5 segundos
     setInterval(triggerAnimation, 5000);
   })();
-  
+
+  // =============================
+  // MENÚ HAMBURGUESA (INDEX)
+  // =============================
   (function () {
-  const header = document.querySelector(".header");
-  if (!header) return;
+    const header = document.querySelector(".header");
+    if (!header) return;
 
-  const btn = header.querySelector(".hamburger");
-  const menu = header.querySelector("#mobileMenuIndex");
-  const overlay = header.querySelector(".menu-overlay");
-  if (!btn || !menu || !overlay) return;
+    const btn = header.querySelector(".hamburger");
+    const menu = header.querySelector("#mobileMenuIndex");
+    const overlay = header.querySelector(".menu-overlay");
+    if (!btn || !menu || !overlay) return;
 
-  const links = menu.querySelectorAll("a");
+    const links = menu.querySelectorAll("a");
 
-  function openMenu() {
-    btn.setAttribute("aria-expanded", "true");
-    menu.hidden = false;
-    overlay.hidden = false;
-    document.body.classList.add("menu-open");
+    function openMenu() {
+      btn.setAttribute("aria-expanded", "true");
+      menu.hidden = false;
+      overlay.hidden = false;
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMenu() {
+      btn.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+      overlay.hidden = true;
+      document.body.classList.remove("menu-open");
+    }
+
+    btn.addEventListener("click", () => {
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      expanded ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+    links.forEach(a => a.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  })();
+ 
+(function(){
+  const el = document.getElementById("storeStatus");
+  if(!el) return;
+
+  // Horarios ejemplo: Lun–Sáb 08:00–20:00
+  // Ajustalo a tu negocio
+  const openHour = 8, openMin = 0;
+  const closeHour = 20, closeMin = 0;
+
+  const now = new Date();
+  const day = now.getDay(); // 0 domingo ... 6 sábado
+  const minutesNow = now.getHours() * 60 + now.getMinutes();
+  const openMinutes = openHour * 60 + openMin;
+  const closeMinutes = closeHour * 60 + closeMin;
+
+  const isSunday = (day === 0);
+  const openToday = !isSunday && minutesNow >= openMinutes && minutesNow < closeMinutes;
+
+  const label = el.querySelector(".label");
+  if(openToday){
+    el.classList.add("is-open");
+    label.textContent = "Abierto ahora";
+  }else{
+    el.classList.add("is-closed");
+    label.textContent = isSunday ? "Cerrado (domingo)" : "Cerrado ahora";
   }
-
-  function closeMenu() {
-    btn.setAttribute("aria-expanded", "false");
-    menu.hidden = true;
-    overlay.hidden = true;
-    document.body.classList.remove("menu-open");
-  }
-
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    expanded ? closeMenu() : openMenu();
-  });
-
-  overlay.addEventListener("click", closeMenu);
-
-  links.forEach(a => a.addEventListener("click", closeMenu));
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeMenu();
-  });
 })();
+
+
+(function(){
+  const toast = document.getElementById("toastPromo");
+  if(!toast) return;
+
+  // aparece a los 3s, se va a los 9s
+  setTimeout(() => toast.classList.add("show"), 3000);
+  setTimeout(() => toast.classList.remove("show"), 9000);
+})();
+
 
 
 </script>
