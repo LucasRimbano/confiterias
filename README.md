@@ -1,9 +1,3 @@
-Perfecto. Te dejo un **README profesional, claro y vendible**, pensado para **GitHub**, orientado a **mostrar valor comercial** (no solo código) y alineado con todo lo que venís construyendo.
-
-Podés copiarlo tal cual y ajustar nombres/imágenes si querés.
-
----
-
 # 🍰 Plantilla Web Profesional para Confiterías
 
 Landing page moderna y responsive diseñada específicamente para **confiterías, panaderías y cafeterías**, pensada para negocios reales que quieren **presencia digital inmediata**, sin complejidad ni costos altos.
@@ -124,11 +118,3 @@ La plantilla se puede adaptar fácilmente a:
 
 Desarrollado por **Lucas**
 Enfocado en diseño web moderno, simple y orientado a negocios reales.
-
----
-
-Si querés, en el próximo mensaje puedo:
-
-* adaptarlo a un **tono más comercial**
-* hacerlo **más técnico**
-* o crear una versión corta tipo “landing README” para clientes no técnicos
