@@ -71,27 +71,6 @@ Ideal para:
 * Sin frameworks
 * Sin dependencias externas
 
----
-
-## 🚀 Cómo usar esta plantilla
-
-1. Cloná el repositorio
-
-```bash
-git clone https://github.com/tu-usuario/tu-repo.git
-```
-
-2. Editá los textos, imágenes y enlaces de WhatsApp
-3. Subila a:
-
-   * GitHub Pages
-   * Vercel
-   * Netlify
-   * Hosting tradicional
-
-Listo. Ya tenés tu web funcionando.
-
----
 
 ## 🧩 Personalización
 
