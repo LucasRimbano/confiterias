@@ -869,3 +869,43 @@ body.menu-open{
   .hamburger{ display: inline-flex; align-items: center; justify-content: center; }
   .header__cta{ display: none; } /* opcional: podés dejarlo visible */
 }
+/* ===== Cards: hover premium ===== */
+.card, .product-card, .l-info__card, .mini-item, .l-photo{
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+.card:hover, .product-card:hover, .l-info__card:hover, .mini-item:hover, .l-photo:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.14);
+  border-color: rgba(0,0,0,.10);
+}
+/* =========================
+   HOVER FOTO — ZOOM SUAVE
+   ========================= */
+
+.photo-hover,
+.product-card__img,
+.l-photo,
+.hero-bakery-card__photo,
+.hero-promo__photo{
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.photo-hover img,
+.product-card__img img,
+.l-photo img,
+.hero-bakery-card__photo img,
+.hero-promo__photo img{
+  transition: transform .45s ease, filter .45s ease;
+  will-change: transform;
+}
+
+.photo-hover:hover img,
+.product-card__img:hover img,
+.l-photo:hover img,
+.hero-bakery-card__photo:hover img,
+.hero-promo__photo:hover img{
+  transform: scale(1.06);
+  filter: saturate(1.05);
+}
